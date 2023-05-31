@@ -1,14 +1,16 @@
 import path from "path";
 import fs from "fs";
 
+export function buildFeedbackPath() {
+  return path.join(process.cwd(), "data", "feedback.json");
+}
+
+export function extractFeedback(filePath) {
+  const fileData = fs.readFileSync(filePath);
+  return JSON.parse(fileData);
+}
+
 function handler(req, res) {
-  function buildFeedbackPath() {
-    return path.join(process.cwd(), "data", "feedback.json");
-  }
-  function extractFeedback(filePath) {
-    const fileData = fs.readFileSync(filePath);
-    return JSON.parse(fileData);
-  }
   if (req.method === "POST") {
     const email = req.body.email;
     const feedbackText = req.body.text;
