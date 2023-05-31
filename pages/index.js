@@ -4,6 +4,12 @@ function HomePage() {
   const emailInputRef = useRef();
   const feedbackInputRef = useRef();
 
+  function getAllFeedbacks() {
+    fetch("/api/feedback")
+      .then((response) => response.json())
+      .then((data) => console.log(data));
+  }
+
   function submitFormHandler(event) {
     event.preventDefault();
 
@@ -37,6 +43,7 @@ function HomePage() {
         </div>
         <button>Submit Feedback</button>
       </form>
+      <button onClick={getAllFeedbacks}>Get Feedbacks</button>
     </div>
   );
 }
