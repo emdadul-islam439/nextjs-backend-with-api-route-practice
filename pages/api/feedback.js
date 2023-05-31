@@ -11,7 +11,7 @@ function handler(req, res) {
   }
   if (req.method === "POST") {
     const email = req.body.email;
-    const feedbackText = req.body.feedback;
+    const feedbackText = req.body.text;
 
     const newFeedback = {
       id: new Date().toISOString(),
@@ -27,7 +27,7 @@ function handler(req, res) {
   } else {
     const filePath = buildFeedbackPath();
     const data = extractFeedback(filePath);
-    res.status(200).json(data);
+    res.status(200).json({ feedback: data });
   }
 }
 
